@@ -11,11 +11,16 @@ import lombok.Data;
 @Entity
 public class Contact {
      
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int contactId;
-    private String contactName;
-    private String phone;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int contactId;
+	private String name;
+	private String secondName;
+	private String work;
+	private String email;
+	private String phone;
+	private String image;
+	private String description;
     @ManyToOne
     private User user;
 }

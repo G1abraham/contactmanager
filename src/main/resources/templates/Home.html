@@ -8,6 +8,7 @@
 <body>
     <div th:insert="Navbar::navbar"></div>
     <h3>Hello World</h3>
-    <p>Welcome <span th:text="${name}"></span></p>
+    <p>Welcome <span th:text="${session.name}"></span></p>
+    <a href="/SignUp">SignUp</a>
 </body>
 </html>
