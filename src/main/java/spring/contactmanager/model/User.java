@@ -28,7 +28,7 @@ public class User {
 	private String imageUrl;
 	@Column (length = 500)
 	private String about;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Contact> contacts;
 	
     
