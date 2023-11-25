@@ -15,6 +15,10 @@
                 <div class="card-header text-center bg-primary">
                     <h2>Sign Up</h2>
                 </div>
+                <div th:if="${error}" class="alert alert-danger" role="alert">
+                    <p th:text="${error}"></p>
+                </div>
+                
                 <div class="card-body">
                     <!-- SignUp Form -->
                     <form action="addUser" method="post" th:object="${user}">

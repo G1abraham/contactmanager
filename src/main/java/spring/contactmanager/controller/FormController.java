@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import spring.contactmanager.Repository.UserRepository;
@@ -31,20 +32,19 @@ public class FormController {
 		return "SignUp";
 	}
 	
-	@RequestMapping(path="/addUser", method=RequestMethod.POST)	
-	public String addUser(@ModelAttribute User user, HttpSession session, Model model,@RequestParam(value="agreement", defaultValue = "false") boolean agreemnet) {
-		if(!agreemnet) {
-			System.out.println("Please accept terms and conditions");
-			return "redirect:/SignUP";
-		}else {
-
-			session.setAttribute("user", user);
-			System.out.println(user);
-			repository.save(user);
-			return "Status";
-		}
-		
-	}
+	@RequestMapping(path = "/addUser", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute User user, HttpSession session, Model model, @RequestParam(value = "agreement", defaultValue = "false") boolean agreement, RedirectAttributes redirectAttributes) {
+        if (!agreement) {
+        	 redirectAttributes.addFlashAttribute("error", "Please accept terms and conditions");
+             redirectAttributes.addFlashAttribute("user", user);
+            return "redirect:/SignUP";
+        } else {
+            session.setAttribute("user", user);
+            System.out.println(user);
+            repository.save(user);
+            return "Status";
+        }
+    }
 	
 	
 	
