@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="Bootstrap::bootstrap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <link rel="stylesheet" th:href="@{/CSS/style.css}">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center bg-primary">
+                    <h2>Sign Up</h2>
+                </div>
+                <div class="card-body">
+                    <!-- SignUp Form -->
+                    <form action="addUser" method="post" th:object="${user}">
+                        
+                        <div class="form-group">
+                            <label for="userName">User Name:</label>
+                            <input type="text" class="form-control" id="userName" placeholder="Enter your user name" th:field="*{userName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Email:</label>
+                            <input type="email" class="form-control" id="userEmail" placeholder="Enter your email" th:field="*{userEmail}">
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Password:</label>
+                            <input type="password" class="form-control" id="userPassword" placeholder="Enter your password" th:field="*{userPassword}">
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="userRole">Role:</label>
+                            <select class="form-control" id="userRole" th:field="*{role}">
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group text-center">
+							<input type="checkbox" name="agreement" class="form-check-input" id="agreement" />
+							<label for="agreement"> Accept terms and Conditions</label>
+						</div>
+                        <div class="mt-4 text-center">
+	                        <button type="submit" class="btn btn-primary btn-block ">Sign Up</button>
+						</div>
+                    </form>
+                    <!-- Login Link -->
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a th:href="@{/login}">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

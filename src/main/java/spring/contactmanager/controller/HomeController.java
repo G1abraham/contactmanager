@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 import spring.contactmanager.Repository.UserRepository;
+import spring.contactmanager.model.User;
 
 @Controller
 public class HomeController {
@@ -19,14 +20,9 @@ public class HomeController {
     @RequestMapping("/home")
     public String home(HttpSession session, Model model) {
       session.setAttribute("name", "Jeevan");
-
-     
-
-        return "Home";
+        return "Home"; 
     }
-
-    @RequestMapping("/SignUp")
-    public String signUp() {
-        return "SignUP";
-    }
+ 
+	
+    
 }
