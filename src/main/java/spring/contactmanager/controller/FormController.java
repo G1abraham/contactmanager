@@ -38,7 +38,14 @@ public class FormController {
         	 redirectAttributes.addFlashAttribute("error", "Please accept terms and conditions");
              redirectAttributes.addFlashAttribute("user", user);
             return "redirect:/SignUP";
-        } else {
+			
+        } else if(user.getUserName().length()<=3){
+			 redirectAttributes.addFlashAttribute("error", "Name should be more than 3 characters long!");
+             redirectAttributes.addFlashAttribute("user", user);
+            return "redirect:/SignUP";
+
+		}
+		else {
             session.setAttribute("user", user);
             System.out.println(user);
             repository.save(user);
