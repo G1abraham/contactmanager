@@ -1,4 +1,4 @@
-package spring.contactmanager.helper;
+package spring.contactmanager.folder;
 
 import lombok.Data;
 
@@ -6,5 +6,4 @@ import lombok.Data;
 public class Message {
     private String content;
     private String type;
-    
 }
