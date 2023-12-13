@@ -23,6 +23,7 @@ public class UserServiceDetailsImpl implements UserDetailsService
 			throw new UsernameNotFoundException("Couldn't find User");
 		}
 		CustomUserDetails customUserDetails= new CustomUserDetails(user);
+		
 		return customUserDetails;
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,16 +29,19 @@ public class User {
 	@NotBlank(message = "Email cannot be blank!")
 	private String userEmail;
 	private String userPassword;
-	private String role;
+	private String roles;
 	private boolean enabled;
 	private String imageUrl;
 	@Column (length = 500)
 	private String about;
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Contact> contacts;
-	
-    
-
-   
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword="
+				+ userPassword + ", roles=" + roles + ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", about="
+				+ about + "]";
+	}
+	 
     
 }

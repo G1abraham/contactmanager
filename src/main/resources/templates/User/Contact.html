@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contact List</title>
+    
+    <style>
+    .horizontal-pagination {
+        display: flex; /* Use flexbox to arrange items horizontally */
+        list-style: none; /* Remove default list styles */
+        padding: 0; /* Remove default padding */
+    }
+
+    .horizontal-pagination li {
+        margin-right: 5px; /* Add spacing between each list item */
+    }
+</style>
+
+    
+</head>
+<body>
+    <h2>Contact List</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <!-- <th>Image</th> -->
+                <th>Name</th>
+                <th>Second Name</th>
+                <th>Work</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+			   <tr th:if="${#lists.isEmpty(contactList)}">
+        <td colspan="8">No contacts available</td>
+    </tr>
+    <th:block th:if="${not #lists.isEmpty(contactList)}">
+            <tr th:each="contact : ${contactList}">
+                <td th:text="${contact.name}"></td>
+                <td th:text="${contact.secondName}"></td>
+                <td th:text="${contact.work}"></td>
+                <td th:text="${contact.email}"></td>
+                <td th:text="${contact.phone}"></td>
+                <td th:text="${contact.description}"></td>
+                <td>
+                    <!-- Display the image based on the filename -->
+                    <img th:src="@{'/image/' + ${contact.image}}" alt="Contact Image" style="width: 100px; height: auto;"/>
+                </td>
+                <td>
+                    <form action="deleteContact" method="post">
+                        <input type="hidden" name="id" th:value="${contact.contactId}" />
+                        <button type="submit" class="btn-primary">Delete</button>
+                    </form>
+                </td>
+            </tr>
+                </th:block>
+
+        </tbody>
+    </table>
+
+    <!-- Pagination controls -->
+    <div th:if="${totalPages > 1}">
+        <ul class="pagination horizontal-pagination">
+            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}">
+                <a th:href="@{/user/contactList(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+            </li>
+        </ul>
+    </div>
+
+    <button><a th:href="@{/user/contactForm}">Add Contacts</a></button>
+</body>
+</html>
